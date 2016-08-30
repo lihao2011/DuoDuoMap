@@ -1,11 +1,16 @@
 package com.developer.duoduomap;
 
+import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;
 
 import android.app.Activity;
+import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.ZoomControls;
 
 public class HelloActivity extends Activity {
 
@@ -22,6 +27,30 @@ public class HelloActivity extends Activity {
 
 		// 获取地图控件引用
 		mMapView = (MapView) findViewById(R.id.bmapView);
+		// 隐藏logo
+		View child = mMapView.getChildAt(1);
+		if (child != null
+				&& (child instanceof ImageView || child instanceof ZoomControls)) {
+			child.setVisibility(View.INVISIBLE);
+		}
+
+		// 放大缩小图标
+		View scaleView = mMapView.getChildAt(2);
+		if (scaleView != null
+				&& (child instanceof ImageView || child instanceof ZoomControls)) {
+			scaleView.setVisibility(View.INVISIBLE);
+		}
+		// 比例尺图标
+		View zoomView = mMapView.getChildAt(3);
+		if (zoomView != null
+				&& (child instanceof ImageView || child instanceof ZoomControls)) {
+			zoomView.setVisibility(View.INVISIBLE);
+		}
+
+		// 地图上比例尺
+		// mMapView.showScaleControl(false);
+		// 隐藏缩放控件
+		// mMapView.showZoomControls(false);
 	}
 
 	@Override
